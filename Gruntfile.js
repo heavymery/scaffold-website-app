@@ -1,3 +1,8 @@
+'use strict';
+
+var CONNECT_PORT = 9001;
+var LIVERELOAD_PORT = 35731;
+
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
@@ -5,6 +10,41 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Read JSON metadata stored in package.json. (optional)
     pkg: grunt.file.readJSON('package.json'),
+
+    connect: {
+      options: {
+        hostname: '0.0.0.0'
+      },
+      livereload: {
+        options: {
+          port: CONNECT_PORT,
+          middleware: function(connect) {
+            var path = require('path');
+            return [
+              require('connect-livereload')({
+                hostname: '0.0.0.0',
+                port: LIVERELOAD_PORT
+              }),
+              connect.static(path.resolve('app'))
+            ]
+          }
+        }
+      }
+    },
+
+    watch: {
+      livereload: {
+        options: {
+          livereload: 35731
+        },
+        files: [
+          'app/images/**/*.{png,jpg,gif}',
+          'app/styles/**/*.css',
+          'app/scripts/**/*.js',
+          'app/**/*.html'
+        ]
+      }
+    },
 
     clean: {
       dist: {
@@ -93,6 +133,16 @@ module.exports = function(grunt) {
         }]
       }
     }
+  });
+
+  // Server task.
+  grunt.registerTask('server', 'Launch local web server and enable live-reloading.', function() {
+    var tasks = [
+      'connect', 
+      'watch'
+    ];
+
+    grunt.task.run(tasks);
   });
 
   // Build task.
