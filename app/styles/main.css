@@ -1,0 +1,56 @@
+h1 {
+  color: #f00;
+}
+
+.shortcut-icon {
+  display: inline-block;
+  margin: 4px 0;
+  background-color: #111;
+}
+.shortcut-icon:after {
+  background-color: #111;
+  display: block;
+  color: #FFF;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.icon-144x144 {
+  width: 144px;
+  height: 144px;
+  background: url('../images/touch/apple-touch-icon-144x144-precomposed.png');
+}
+.icon-144x144:after {
+  content: '144x144';
+  line-height: 144px;
+}
+
+.icon-114x114 {
+  width: 114px;
+  height: 114px;
+  background: url('../images/touch/apple-touch-icon-114x114-precomposed.png');
+}
+.icon-114x114:after {
+  content: '114x114';
+  line-height: 114px;
+}
+
+.icon-72x72 {
+  width: 72px;
+  height: 72px;
+  background: url('../images/touch/apple-touch-icon-72x72-precomposed.png');
+}
+.icon-72x72:after {
+  content: '72x72';
+  line-height: 72px;
+}
+
+.icon-57x57 {
+  width: 57px;
+  height: 57px;
+  background: url('../images/touch/apple-touch-icon-57x57-precomposed.png');
+}
+.icon-57x57:after {
+  content: '57x57';
+  line-height: 57px;
+}
