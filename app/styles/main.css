@@ -4,7 +4,7 @@ h1 {
 
 .shortcut-icon {
   display: inline-block;
-  margin: 4px 0;
+  margin: 2px;
   background-color: #111;
 }
 .shortcut-icon:after {
