@@ -2,7 +2,10 @@
 
 ## Features
 
-...
+* Built-in preview server with LiveReload
+* Image Optimization
+* CSS/JS Unify & Minify 
+* File revisioning all HTML/CSS/JS files
 
 ## Source structure
 
