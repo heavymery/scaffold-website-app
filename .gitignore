@@ -3,6 +3,7 @@ npm-debug.log
 app/bower_components
 app/styles/*.css
 app/styles/*.css.map
+app/styleguide
 .tmp
 .sass_cache
 *.swp
