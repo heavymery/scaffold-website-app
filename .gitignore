@@ -6,5 +6,6 @@ app/styles/*.css.map
 app/styleguide
 .tmp
 .sass_cache
+.sass-cache
 *.swp
 .DS_Store
