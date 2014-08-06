@@ -128,6 +128,11 @@ Build for front-end source code.
 $ grunt build
 ```
 
+Launch preview server for build version.
+
+```sh
+$ grunt serve:dist
+```
 
 ## Deploy
 
