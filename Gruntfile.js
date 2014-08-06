@@ -180,6 +180,30 @@ module.exports = function(grunt) {
       }
     },
     
+    image: {
+      dist: {
+        options: {
+          pngquant: true,
+          optipng: true,
+          advpng: true,
+          zopflipng: true,
+          pngcrush: true,
+          pngout: true,
+          jpegtran: true,
+          jpegRecompress: true,
+          jpegoptim: true,
+          gifsicle: true,
+          svgo: true
+        },
+        files: [{
+          expand: true,
+          cwd: 'dist/images',
+          src: '**/*.{png,jpg,gif,svg}',
+          dest: 'dist/images',
+        }]
+      }
+    },
+    
     shell: {
       options: {
         stdout: true,
@@ -229,6 +253,7 @@ module.exports = function(grunt) {
       'shell:sassUpdate',
       'clean:dist',
       'copy:build',
+      'image:dist',
       'useminPrepare',
       'concat',
       'cssmin',
