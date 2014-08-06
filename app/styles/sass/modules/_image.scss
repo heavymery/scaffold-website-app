@@ -1,0 +1,42 @@
+// Image (modules/image)
+//
+// 静的な画像を背景に設定する際に便利な Mixin 
+//
+// Styleguide 9.3.
+
+
+// image-background
+//
+// ```scss
+// image-background($image-url, [$pixel-ratio])
+// ```
+//
+// 画像を背景に設定する。（要素のサイズを自動設定）
+//
+// **Usage:**
+//
+// ```scss
+// .my-container {
+//   @include image-background('my/container-background.png', 2);
+// }
+// ```
+// 
+// **Parameters:**
+//
+// * `$image-url`   - 画像URL
+// * `$pixel-ratio` - ピクセルアスペクト比（Retina:2）
+//
+// Compatible in iOS Safari 4.0+, Android Browser 2.2+.
+//
+// Styleguide 9.3.1.
+@mixin image-background($image-url, $pixel-ratio: 1) {
+  width: image-width($image-url) / $pixel-ratio;
+  height: image-height($image-url) / $pixel-ratio;
+  
+  @include background(image-url($image-url) no-repeat);
+  
+  @include background-size(
+    image-width($image-url) / $pixel-ratio 
+    image-height($image-url) / $pixel-ratio
+  );
+}

@@ -1,0 +1,163 @@
+@import "partials/base";
+
+// Global reset style
+@include global-reset;
+
+// =============================================================================
+// Additional reset
+// =============================================================================
+
+body {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  -webkit-text-size-adjust: none;
+  
+  cursor: default;
+}
+
+button,
+a[ng-click] {
+  outline: none;
+}
+
+// =============================================================================
+// Mixins
+// =============================================================================
+
+@mixin font-size($size) {
+  // rem サポートブラウザは現在 Firefox3.6+, Chrome, Safari5, IE9+ のみ
+  // rem 非対応ブラウザの為に px も設定しておく
+  font-size: $size+px;
+  font-size: $size/10+rem;
+}
+
+@mixin line-height($size) {
+  line-height: $size+px;
+  line-height: $size/10+rem;
+}
+
+// =============================================================================
+// Configuration
+// =============================================================================
+
+$container-max-width: 960px;
+
+// =====================================
+// Breakpoint
+// (http://breakpoint-sass.com/)
+// =====================================
+
+$breakpoint-desktop: 900px; // スクリーン幅が 900px 以上だったらデスクトップ
+$breakpoint-tablet: 750px; // スクリーン幅が 600px 以上だったらタブレット
+// それ以外はモバイル（モバイルファスト！）
+
+// =====================================
+// Susy
+// (http://susy.oddbird.net/)
+// =====================================
+
+// Grid レイアウトが必要な場合は Susy が便利（今回は Grid レイアウト要らなさそう）
+$susy: (
+  global-box-sizing: border-box,
+  use-custom: (rem: true)
+);
+
+@include border-box-sizing;
+
+// =============================================================================
+// Main style
+// =============================================================================
+
+html {
+  font-size: 62.5%; // これで 1em が 10px と同じになる
+}
+
+body{
+  // フォント指定（参照：http://www.dtp-transit.jp/misc/web/post_1881.html）
+  font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif; // ゴシック体
+  //font-family: "Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "メイリオ", Meiryo, serif;// 明朝体
+  //font-family: "Osaka－等幅", Osaka-mono, "ＭＳ ゴシック", "MS Gothic", monospace; // 等幅書体
+  //font-family: "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", Meiryo, fantasy; // OS X限定 丸ゴシック体
+
+  @include font-size(14);
+}
+
+// =====================================
+// Root container
+// =====================================
+
+#main-container {
+  overflow: hidden;
+}
+
+// =====================================
+// Header
+// =====================================
+
+// =====================================
+// Contents
+// =====================================
+
+.shortcut-icon {
+  display: inline-block;
+  margin: 2px;
+  background-color: #111;
+}
+.shortcut-icon:after {
+  background-color: #111;
+  display: block;
+  color: #FFF;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.icon-144x144 {
+  width: 144px;
+  height: 144px;
+  background: image-url('touch/apple-touch-icon-144x144-precomposed.png');
+}
+.icon-144x144:after {
+  content: '144x144';
+  line-height: 144px;
+}
+
+.icon-114x114 {
+  width: 114px;
+  height: 114px;
+  background: image-url('touch/apple-touch-icon-114x114-precomposed.png');
+}
+.icon-114x114:after {
+  content: '114x114';
+  line-height: 114px;
+}
+
+.icon-72x72 {
+  width: 72px;
+  height: 72px;
+  background: image-url('touch/apple-touch-icon-72x72-precomposed.png');
+}
+.icon-72x72:after {
+  content: '72x72';
+  line-height: 72px;
+}
+
+.icon-57x57 {
+  width: 57px;
+  height: 57px;
+  background: image-url('touch/apple-touch-icon-57x57-precomposed.png');
+}
+.icon-57x57:after {
+  content: '57x57';
+  line-height: 57px;
+}
+
+// =====================================
+// Footer
+// =====================================

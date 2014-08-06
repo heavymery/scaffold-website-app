@@ -1,0 +1,162 @@
+// Sprite (modules/sprite)
+//
+// Compass で自動生成したスプライト画像を背景に設定する際に便利な Mixin 
+//
+// Styleguide 9.1.
+
+
+// get-sprite
+//
+// ```scss
+// get-sprite($path, [$sprite-layout])
+// ```
+//
+// 指定した画像フォルダーのパスからスプライト画像を生成する。
+//
+// **Usage:**
+//
+// ```scss
+// $icon-sprite: get-sprite("icon");
+// ```
+//
+// **Parameters:**
+//
+// * `$path`          - スプライトのパーツ画像が保存されているフォルダーのパス
+// * `$sprite-layout` - 自動生成されるスプライト画像のレイアウト（デフォルト：smart）
+//
+//
+// **Return:**
+//
+// スプライト自動作成時に生成されるスプライトマップのインスタンス
+//
+// Compatible in iOS Safari 4.0+, Android Browser 2.2+.
+//
+// Styleguide 9.1.1.
+@function get-sprite($path, $sprite-layout: smart) {
+  @return sprite-map($path + "/" + "*.png", $layout: $sprite-layout);
+}
+
+
+// sprite
+//
+// ```scss
+// sprite($sprite-map, $part-name, [$pixel-ratio])
+// ```
+//
+// スプライト画像から背景を設定する。
+//
+// **Usage:**
+//
+// ```scss
+// $icon-sprite: sprite-map("icon/*.png", $layout: smart);
+// 
+// .home-icon {
+//   @include sprite($icon-sprite, 'home', 2);
+// }
+// ```
+// 
+// **Parameters:**
+//
+// * `$sprite-map`  - スプライト自動作成時に生成されるスプライトマップのインスタンス
+// * `$part-name`   - 取り出したいパーツの名前（スプライト化される前の画像ファイル名）
+// * `$pixel-ratio` - ピクセルアスペクト比（Retina:2）
+//
+// Compatible in iOS Safari 4.0+, Android Browser 2.2+.
+//
+// Styleguide 9.1.2.
+@mixin sprite($sprite-map, $part-name, $pixel-ratio: 1) {
+  background: sprite-url($sprite-map);
+  @include background-size(
+    image-width(sprite-path($sprite-map)) / $pixel-ratio 
+    image-height(sprite-path($sprite-map)) / $pixel-ratio
+  );
+
+  background-position: 
+    nth(sprite-position($sprite-map, $part-name), 1) / $pixel-ratio
+    nth(sprite-position($sprite-map, $part-name), 2) / $pixel-ratio;
+    
+  width: image-width(sprite-file($sprite-map, $part-name)) / $pixel-ratio;
+  height: image-height(sprite-file($sprite-map, $part-name)) / $pixel-ratio;
+}
+
+
+// sprite-base
+//
+// ```scss
+// sprite-base($sprite-map, [$pixel-ratio])
+// ```
+//
+// スプライト画像から背景を設定する。（ベースのみ設定）
+//
+// **Usage:**
+//
+// ```scss
+// .icon {
+//   @include sprite-base($icon-sprite, 2);
+//   
+//   &.home {
+//     @include sprite-part($icon-sprite, 'home', 2);
+//   }
+//   &.my-page {
+//     @include sprite-part($icon-sprite, 'my-page', 2);
+//   }
+// }
+// ```
+//
+// **Parameters:**
+//
+// * `$sprite-map`  - スプライト自動作成時に生成されるスプライトマップのインスタンス
+// * `$pixel-ratio` - ピクセルアスペクト比（Retina:2）
+//
+// Compatible in iOS Safari 4.0+, Android Browser 2.2+.
+//
+// Styleguide 9.1.3.
+@mixin sprite-base($sprite-map, $pixel-ratio: 1) {
+  background: sprite-url($sprite-map);
+  @include background-size(
+    image-width(sprite-path($sprite-map)) / $pixel-ratio 
+    image-height(sprite-path($sprite-map)) / $pixel-ratio
+  );
+}
+
+
+// sprite-part
+//
+// ```scss
+// sprite-part($sprite-map, $part-name, [$pixel-ratio])
+// ```
+//
+// スプライト画像から背景を設定する。（パーツのみ設定）
+//
+// **Usage:**
+//
+// ```scss
+// .icon {
+//   @include sprite-base($icon-sprite, 2);
+//   
+//   &.home {
+//     @include sprite-part($icon-sprite, 'home', 2);
+//   }
+//   &.my-page {
+//     @include sprite-part($icon-sprite, 'my-page', 2);
+//   }
+// }
+// ```
+//
+// **Parameters:**
+//
+// * `$sprite-map`  - スプライト自動作成時に生成されるスプライトマップのインスタンス
+// * `$part-name`   - 取り出したいパーツの名前（スプライト化される前の画像ファイル名）
+// * `$pixel-ratio` - ピクセルアスペクト比（Retina:2）
+//
+// Compatible in iOS Safari 4.0+, Android Browser 2.2+.
+//
+// Styleguide 9.1.4.
+@mixin sprite-part($sprite-map, $part-name, $pixel-ratio: 1) {
+  background-position: 
+    nth(sprite-position($sprite-map, $part-name), 1) / $pixel-ratio
+    nth(sprite-position($sprite-map, $part-name), 2) / $pixel-ratio;
+    
+  width: image-width(sprite-file($sprite-map, $part-name)) / $pixel-ratio;
+  height: image-height(sprite-file($sprite-map, $part-name)) / $pixel-ratio;
+}
