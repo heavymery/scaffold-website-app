@@ -1,7 +1,7 @@
 {
   "name": "scaffold-website-app",
   "version": "0.1.0",
-  "description": "Website & app scaffolding."
+  "description": "Website & app scaffolding.",
   "repository": {
     "type": "git",
     "url": "git@github.com:heavymery/scaffold-website-app.git"
