@@ -15,8 +15,8 @@
 |   |   |   +- modules
 |   |   |   +- partials
 |   |   |   +- vendor
-|   |   |   |
 |   |   |   +- styleguide.md
+|   |   |   |
 |   |   |   +- main.scss
 |   |   +- main.css
 |   |
