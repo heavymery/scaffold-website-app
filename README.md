@@ -131,6 +131,8 @@ $ grunt build
 
 ## Deploy
 
+Deploying to Github Pages. (`http://{username}.github.io/{repository-name}/`)
+
 ```sh
 $ git push origin :gh-pages # if push rejected
 $ git subtree push --prefix dist origin gh-pages
