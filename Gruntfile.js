@@ -1,7 +1,19 @@
 'use strict';
 
+var CONNECT_HOST = '0.0.0.0';
 var CONNECT_PORT = 9001;
+
+var LIVERELOAD_HOST = '0.0.0.0';
 var LIVERELOAD_PORT = 35731;
+
+var lrSnippet = require('connect-livereload')({ 
+  hostname: LIVERELOAD_HOST,
+  port: LIVERELOAD_PORT,
+});
+
+var mountFolder = function (connect, dir) {
+  return connect.static(require('path').resolve(dir));
+};
 
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
@@ -13,20 +25,26 @@ module.exports = function(grunt) {
 
     connect: {
       options: {
-        hostname: '0.0.0.0'
+        hostname: CONNECT_HOST
       },
       livereload: {
         options: {
           port: CONNECT_PORT,
           middleware: function(connect) {
-            var path = require('path');
             return [
-              require('connect-livereload')({
-                hostname: '0.0.0.0',
-                port: LIVERELOAD_PORT
-              }),
-              connect.static(path.resolve('app'))
+              lrSnippet,
+              mountFolder(connect, 'app')
             ]
+          }
+        }
+      },
+      dist: {
+        options: {
+          port: CONNECT_PORT,
+          middleware: function (connect) {
+            return [
+              mountFolder(connect, 'dist')
+            ];
           }
         }
       }
@@ -35,7 +53,7 @@ module.exports = function(grunt) {
     watch: {
       livereload: {
         options: {
-          livereload: 35731
+          livereload: LIVERELOAD_PORT
         },
         files: [
           'app/images/**/*.{png,jpg,gif}',
@@ -132,16 +150,41 @@ module.exports = function(grunt) {
           dest: 'dist'
         }]
       }
+    },
+    
+    shell: {
+      options: {
+        stdout: true,
+        stderr: true
+      },
+      
+      sassUpdate: {
+        command: 'sass --compass -l -t expanded --update app/styles/sass:app/styles'
+      },
+      sassWatch: {
+        command: 'sass --compass -l -t expanded --watch app/styles/sass:app/styles'
+      },
+      styleguide: {
+        command: 'mkdir -p styleguide; node_modules/kss/bin/kss-node app/styles/sass styleguide -t styleguide-template --css app/styles/main.css'
+      }
     }
   });
 
   // Server task.
-  grunt.registerTask('server', 'Launch local web server and enable live-reloading.', function() {
-    var tasks = [
-      'connect', 
-      'watch'
-    ];
-
+  grunt.registerTask('serve', 'Launch local web server and enable live-reloading.', function(target) {
+    var tasks;
+    
+    if (target === 'dist') {
+      tasks = [
+        'connect:dist:keepalive'
+      ];
+    } else {
+      tasks = [
+        'connect:livereload', 
+        'watch'
+      ];
+    }
+    
     grunt.task.run(tasks);
   });
 
