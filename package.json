@@ -1,16 +1,13 @@
 {
-  "name": "grunt-sample",
-  "version": "0.0.0",
-  "description": "Configuring and creating grunt tasks sample.",
+  "name": "scaffold-website-app",
+  "version": "0.1.0",
+  "description": "Website & app scaffolding."
   "repository": {
     "type": "git",
-    "url": "git@github.com:heavymery/grunt-sample.git"
+    "url": "git@github.com:heavymery/scaffold-website-app.git"
   },
   "main": "Gruntfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "Shindeok Kang <heavymery@gmail.com>",
   "license": "BSD-2-Clause",
   "devDependencies": {
     "grunt": "~0.4.5",
