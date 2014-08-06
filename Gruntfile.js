@@ -108,6 +108,7 @@ module.exports = function(grunt) {
           src: [
             'images/**/*.{png,jpg,gif}',
             '**/*.html',
+            '!bower_components/**/*.html',
             '!styleguide/**/*.html',
             '!styleguide-template/**/*.html'
           ]
@@ -124,34 +125,13 @@ module.exports = function(grunt) {
 
     filerev: {
       images: {
-        files: [{
-          expand: true,
-          cwd: 'dist',
-          dest: 'dist',
-          src: [
-            'images/**/*.{png,jpg,gif}'
-          ]
-        }]
+        src: 'dist/images/**/*.{png,jpg,gif}'
       },
       styles: {
-        files: [{
-          expand: true,
-          cwd: 'dist',
-          dest: 'dist',
-          src: [
-            'styles/**/*.css'
-          ]
-        }]
+        src: 'dist/styles/**/*.css'
       },
       scripts: {
-        files: [{
-          expand: true,
-          cwd: 'dist',
-          dest: 'dist',
-          src: [
-            'scripts/**/*.js'
-          ]
-        }]
+        src: 'dist/scripts/**/*.js'
       }
     },
 
