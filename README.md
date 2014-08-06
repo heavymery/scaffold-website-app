@@ -15,13 +15,14 @@
 |   |   |   +- modules
 |   |   |   +- partials
 |   |   |   +- vendor
+|   |   |   |
 |   |   |   +- styleguide.md
 |   |   |   +- main.scss
 |   |   +- main.css
 |   |
 |   +- styleguide
 |   +- styleguide-template
-|
+|   |
 |   +- bower_components
 |   +- scripts
 |   |   +- main.js
