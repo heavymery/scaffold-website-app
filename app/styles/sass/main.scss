@@ -55,7 +55,7 @@ $container-max-width: 960px;
 // =====================================
 
 $breakpoint-desktop: 900px; // スクリーン幅が 900px 以上だったらデスクトップ
-$breakpoint-tablet: 750px; // スクリーン幅が 600px 以上だったらタブレット
+$breakpoint-tablet: 600px; // スクリーン幅が 600px 以上だったらタブレット
 // それ以外はモバイル（モバイルファスト！）
 
 // =====================================
@@ -90,74 +90,59 @@ body{
 }
 
 // =====================================
-// Root container
+// Container
 // =====================================
 
 #main-container {
   overflow: hidden;
-}
+} // #main-container
+
+.container {
+  position: relative;
+  @include container($container-max-width);
+  @include clearfix;
+} // .container
 
 // =====================================
 // Header
 // =====================================
 
+#header {
+  background: #666;
+  
+  .logo {
+    @include font-size(20);
+    @include line-height(50);
+    padding: 0 10px;
+  }
+} // #header
+
 // =====================================
-// Contents
+// Content
 // =====================================
 
-.shortcut-icon {
-  display: inline-block;
-  margin: 2px;
-  background-color: #111;
-}
-.shortcut-icon:after {
-  background-color: #111;
-  display: block;
-  color: #FFF;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.icon-144x144 {
-  width: 144px;
-  height: 144px;
-  background: image-url('touch/apple-touch-icon-144x144-precomposed.png');
-}
-.icon-144x144:after {
-  content: '144x144';
-  line-height: 144px;
-}
-
-.icon-114x114 {
-  width: 114px;
-  height: 114px;
-  background: image-url('touch/apple-touch-icon-114x114-precomposed.png');
-}
-.icon-114x114:after {
-  content: '114x114';
-  line-height: 114px;
-}
-
-.icon-72x72 {
-  width: 72px;
-  height: 72px;
-  background: image-url('touch/apple-touch-icon-72x72-precomposed.png');
-}
-.icon-72x72:after {
-  content: '72x72';
-  line-height: 72px;
-}
-
-.icon-57x57 {
-  width: 57px;
-  height: 57px;
-  background: image-url('touch/apple-touch-icon-57x57-precomposed.png');
-}
-.icon-57x57:after {
-  content: '57x57';
-  line-height: 57px;
-}
+#content {
+  p { 
+    padding: 10px;
+    @include font-size(20);
+  }
+} // #content
 
 // =====================================
 // Footer
 // =====================================
+
+#footer {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  
+  background: #666;
+  
+  .copyright {
+    @include font-size(14px);
+    @include line-height(22);
+    text-align: center;
+  }
+} // #footer
