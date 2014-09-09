@@ -190,12 +190,13 @@ module.exports = function(grunt) {
         stderr: true
       },
       
-      sassUpdate: {
-        command: 'sass --compass -l -t expanded --update app/styles/sass:app/styles'
+      compassCompile: {
+        command: 'bundle exec compass compile'
       },
-      sassWatch: {
-        command: 'sass --compass -l -t expanded --watch app/styles/sass:app/styles'
+      compassWatch: {
+        command: 'bundle exec compass watch'
       },
+      
       styleguide: {
         command: 'mkdir -p app/styleguide; node_modules/kss/bin/kss-node app/styles/sass app/styleguide -t app/styleguide-template --css app/styles/main.css'
       }
@@ -217,12 +218,12 @@ module.exports = function(grunt) {
     } else {
       tasks = [
         'connect:livereload', 
-        'shell:sassWatch',
+        'shell:compassWatch',
         'watch'
       ];
     }
     
-    grunt.config('shell.sassWatch.options.async', true);
+    grunt.config('shell.compassWatch.options.async', true);
     
     grunt.task.run(tasks);
   });
@@ -230,7 +231,7 @@ module.exports = function(grunt) {
   // Build task.
   grunt.registerTask('build', 'Minify CSS/JS/HTML and revisioning all static files.', function() {
     var tasks = [
-      'shell:sassUpdate',
+      'shell:compassCompile',
       'clean:dist',
       'copy:build',
       'image:dist',
