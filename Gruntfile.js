@@ -2,33 +2,6 @@
 
 //------------------------------------------------------------------------------
 //
-//  Constants
-//
-//------------------------------------------------------------------------------
-
-var CONNECT_HOST = '0.0.0.0';
-var CONNECT_PORT = 9001;
-
-var LIVERELOAD_HOST = '0.0.0.0';
-var LIVERELOAD_PORT = 35731;
-
-//------------------------------------------------------------------------------
-//
-//  Functions
-//
-//------------------------------------------------------------------------------
-
-var lrSnippet = require('connect-livereload')({ 
-  hostname: LIVERELOAD_HOST,
-  port: LIVERELOAD_PORT,
-});
-
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
-};
-
-//------------------------------------------------------------------------------
-//
 //  Initialize
 //
 //------------------------------------------------------------------------------
@@ -38,14 +11,21 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
 //--------------------------------------
-//  Grunt init config
+//  Constants
 //--------------------------------------
 
-  // Project configuration.
-  grunt.initConfig({
-    // Read JSON metadata stored in package.json. (optional)
-    pkg: grunt.file.readJSON('package.json'),
+  var CONNECT_HOST = grunt.option('connect-host') || '0.0.0.0';
+  var CONNECT_PORT = grunt.option('connect-port') || 9001;
+  
+  var LIVERELOAD_HOST = grunt.option('livereload-host') || '0.0.0.0';
+  var LIVERELOAD_PORT = grunt.option('livereload-port') || 35731;
 
+//--------------------------------------
+//  Plugin tasks configuration
+//--------------------------------------
+
+  grunt.initConfig({
+    
     connect: {
       options: {
         hostname: CONNECT_HOST
@@ -55,8 +35,8 @@ module.exports = function(grunt) {
           port: CONNECT_PORT,
           middleware: function(connect) {
             return [
-              lrSnippet,
-              mountFolder(connect, 'app')
+              require('connect-livereload')({ hostname: LIVERELOAD_HOST, port: LIVERELOAD_PORT }),
+              connect.static(require('path').resolve('app'))
             ]
           }
         }
@@ -66,7 +46,7 @@ module.exports = function(grunt) {
           port: CONNECT_PORT,
           middleware: function (connect) {
             return [
-              mountFolder(connect, 'dist')
+              connect.static(require('path').resolve('dist'))
             ];
           }
         }
@@ -190,23 +170,25 @@ module.exports = function(grunt) {
         stderr: true
       },
       
-      sassUpdate: {
-        command: 'sass --compass -l -t expanded --update app/styles/sass:app/styles'
+      compassCompile: {
+        command: 'bundle exec compass compile'
       },
-      sassWatch: {
-        command: 'sass --compass -l -t expanded --watch app/styles/sass:app/styles'
+      compassWatch: {
+        command: 'bundle exec compass watch'
       },
+      
       styleguide: {
         command: 'mkdir -p app/styleguide; node_modules/kss/bin/kss-node app/styles/sass app/styleguide -t app/styleguide-template --css app/styles/main.css'
       }
     }
-  });
+    
+  }); // grunt.initConfig
 
 //--------------------------------------
-//  Grunt tasks
+//  Register tasks
 //--------------------------------------
 
-  // Server task.
+  // Serve task
   grunt.registerTask('serve', 'Launch local web server and enable live-reloading.', function(target) {
     var tasks;
     
@@ -217,20 +199,20 @@ module.exports = function(grunt) {
     } else {
       tasks = [
         'connect:livereload', 
-        'shell:sassWatch',
+        'shell:compassWatch',
         'watch'
       ];
     }
     
-    grunt.config('shell.sassWatch.options.async', true);
+    grunt.config('shell.compassWatch.options.async', true);
     
     grunt.task.run(tasks);
   });
 
-  // Build task.
+  // Build task
   grunt.registerTask('build', 'Minify CSS/JS/HTML and revisioning all static files.', function() {
     var tasks = [
-      'shell:sassUpdate',
+      'shell:compassCompile',
       'clean:dist',
       'copy:build',
       'image:dist',
@@ -249,7 +231,7 @@ module.exports = function(grunt) {
     grunt.task.run(tasks);
   });
 
-  // Default task(s).
+  // Default task
   grunt.registerTask('default', [
     'build'
   ]);
