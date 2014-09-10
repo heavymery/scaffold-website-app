@@ -139,7 +139,10 @@ $ grunt serve:dist
 
 ## Deploy
 
-Deploying to Github Pages. (`http://{username}.github.io/{repository-name}/`)
+Deploying to Github Pages. 
+
+* GitHub.com -> `http://{user-name}.github.io/{repository-name}/`
+* GitHub Enterprise -> `http://{github-domain}/pages/{user-name}/{repository-name}/`
 
 ```sh
 $ git push origin :gh-pages # if push rejected
