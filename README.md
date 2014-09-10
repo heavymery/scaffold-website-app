@@ -115,7 +115,7 @@ $ bower install
 
 ## Grunt tasks
 
-### Server
+### Serve
 
 Launch preview server with LiveReload.
 
@@ -135,6 +135,14 @@ Launch preview server for build version.
 
 ```sh
 $ grunt serve:dist
+```
+
+### Styleguide
+
+Generate styleguide. (`app/styleguide`)
+
+```sh
+$ grunt shell:styleguide
 ```
 
 ## Deploy
