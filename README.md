@@ -28,7 +28,8 @@
 |   |
 |   +- bower_components
 |   +- scripts
-|   |   +- main.js
+|   |   +- 
+|   |   +- |   |   +- main.js
 |   |
 |   +- index.html 
 |
