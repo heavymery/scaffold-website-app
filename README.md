@@ -1,5 +1,7 @@
 # Website & app scaffolding
 
+**TODO: more details.**
+
 ## Features
 
 * Built-in preview server with LiveReload
@@ -28,8 +30,9 @@
 |   |
 |   +- bower_components
 |   +- scripts
-|   |   +- 
-|   |   +- |   |   +- main.js
+|   |   +- vendor 
+|   |   +- plugins
+|   |   +- main.js
 |   |
 |   +- index.html 
 |
