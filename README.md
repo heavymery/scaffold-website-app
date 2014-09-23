@@ -4,10 +4,18 @@
 
 ## Features
 
-* Built-in preview server with LiveReload
-* Image Optimization
-* CSS/JS Unify & Minify 
-* File revisioning all HTML/CSS/JS files
+* Ruby & Node version management (rbenv & ndenv)
+* Ruby gems version management (bundler)
+* Javascript package management (bower) 
+* Built-in preview server with LiveReload (grunt)
+* Build automation (grunt)
+ * HTML minify
+ * CSS/JS unify & minify 
+ * Image Optimization
+ * File revisioning all static files
+* Sass/Compass folder structure best practices ([app/styles/sass/styleguide.md](https://github.com/heavymery/scaffold-website-app/blob/master/app/styles/sass/styleguide.md))
+* KSS styleguide template (http://htanjo.github.io/kss-node-template/)
+* Deployment to GitHub Pages
 
 ## Source structure
 
