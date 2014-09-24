@@ -59,7 +59,7 @@ module.exports = function(grunt) {
           livereload: LIVERELOAD_PORT
         },
         files: [
-          'app/images/**/*.{png,jpg,gif}',
+          'app/images/**/*.{png,jpg,gif,svg}',
           'app/styles/**/*.css',
           'app/scripts/**/*.js',
           'app/**/*.html'
@@ -86,9 +86,9 @@ module.exports = function(grunt) {
           cwd: 'app',
           dest: 'dist',
           src: [
-            'images/**/*.{png,jpg,gif}',
+            '**/*.{png,jpg,gif,svg}',
             '**/*.html',
-            '!bower_components/**/*.html',
+            '!bower_components/**',
             '!styleguide/**/*.html',
             '!styleguide-template/**/*.html'
           ]
@@ -105,7 +105,7 @@ module.exports = function(grunt) {
 
     filerev: {
       images: {
-        src: 'dist/images/**/*.{png,jpg,gif}'
+        src: 'dist/images/**/*.{png,jpg,gif,svg}'
       },
       styles: {
         src: 'dist/styles/**/*.css'
