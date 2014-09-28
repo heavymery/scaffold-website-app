@@ -1,6 +1,13 @@
 # Website & app scaffolding
 
-**TODO: more details.**
+[Website & app scaffolding](# Website & app scaffolding) is boilerplate & tools for websites and web apps development.
+
+Inspired by below boilerplate & tools.
+* [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate)
+* [Mobile Boilerplate](https://github.com/h5bp/mobile-boilerplate)
+* [Yeoman Web app generator](https://github.com/yeoman/generator-webapp)
+* [Yeoman Generator Mobile](https://github.com/yeoman/generator-mobile)
+* [Google Web Starter Kit](https://github.com/google/web-starter-kit)
 
 ## Features
 
