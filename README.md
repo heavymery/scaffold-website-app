@@ -1,11 +1,28 @@
 # Website & app scaffolding
 
+[Website & app scaffolding](# Website & app scaffolding) is boilerplate & tools for websites and web apps development.
+
+Inspired by below boilerplate & tools.
+* [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate)
+* [Mobile Boilerplate](https://github.com/h5bp/mobile-boilerplate)
+* [Yeoman Web app generator](https://github.com/yeoman/generator-webapp)
+* [Yeoman Generator Mobile](https://github.com/yeoman/generator-mobile)
+* [Google Web Starter Kit](https://github.com/google/web-starter-kit)
+
 ## Features
 
-* Built-in preview server with LiveReload
-* Image Optimization
-* CSS/JS Unify & Minify 
-* File revisioning all HTML/CSS/JS files
+* Ruby & Node version management (rbenv & ndenv)
+* Ruby gems version management (bundler)
+* Javascript package management (bower) 
+* Built-in preview server with LiveReload (grunt)
+* Build automation (grunt)
+ * HTML minify
+ * CSS/JS unify & minify 
+ * Image Optimization
+ * File revisioning all static files
+* Sass/Compass folder structure best practices ([app/styles/sass/styleguide.md](https://github.com/heavymery/scaffold-website-app/blob/master/app/styles/sass/styleguide.md))
+* KSS styleguide template (http://htanjo.github.io/kss-node-template/)
+* Deployment to GitHub Pages
 
 ## Source structure
 
@@ -28,6 +45,8 @@
 |   |
 |   +- bower_components
 |   +- scripts
+|   |   +- vendor 
+|   |   +- plugins
 |   |   +- main.js
 |   |
 |   +- index.html 
