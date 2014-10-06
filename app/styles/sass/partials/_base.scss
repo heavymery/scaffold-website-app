@@ -8,7 +8,7 @@
 
 // =====================================
 // Non Imported Compass Modules
-// (http://beta.compass-style.org/reference/compass/)
+// (http://compass-style.org/reference/compass/)
 // =====================================
 
 // Compass Layout (http://compass-style.org/reference/compass/layout/)
@@ -18,18 +18,15 @@
 @import "compass/layout/stretching";
 
 // Compass Reset (http://compass-style.org/reference/compass/reset/)
-// @import "compass/reset"; // == @include global-reset;
+// @import "compass/reset"; // equal to @include global-reset;
 @import "compass/reset/utilities";
 
-// Flexbox (http://beta.compass-style.org/reference/compass/css3/flexbox/)
+// Flexbox (http://compass-style.org/reference/compass/css3/flexbox/)
 @import "compass/css3/flexbox";
 
 // =====================================
 // Compass Plugins
 // =====================================
-
-// Animation Compass Plugin (https://github.com/ericam/compass-animation)
-//@import "animation"; // not need anymore (compass 1.0.16 ~)
 
 // Susy (http://susy.oddbird.net/)
 @import "susy";
@@ -59,7 +56,7 @@
 
 // =====================================
 // Cross-Browser Support
-// (http://beta.compass-style.org/reference/compass/support/)
+// (http://compass-style.org/reference/compass/support/)
 // =====================================
 
-$supported-browsers: ("chrome", "safari");
+// $supported-browsers: ("chrome", "safari"); // defaults to all.
