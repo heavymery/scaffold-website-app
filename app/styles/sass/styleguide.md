@@ -96,8 +96,8 @@ Deprecated styles.
 // Markup:
 // <markup sample>
 //
-// <modifier or pseudo class> - <descriptions>
-// <modifier or pseudo class> - <descriptions>
+// <modifier or pseudo class> - <description>
+// <modifier or pseudo class> - <description>
 // 
 // Styleguide X.X.X.
 ```
