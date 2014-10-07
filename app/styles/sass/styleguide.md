@@ -61,6 +61,14 @@ Minimal styleguide comments.
 //
 // <description>
 //
+// Styleguide X.X.X.
+```
+
+```scss
+// <title>
+//
+// <description>
+//
 // Markup: 
 // <markup sample>
 //
