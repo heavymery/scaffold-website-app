@@ -39,98 +39,86 @@ scss
 ```
 
 
-## KSS systax
+## KSS syntax
 
-スタイルガイドに表示するドキュメントは以下の形式でコメントを書いてください。これ形式以外のコメントは無視されます。
-（参照：[KSS公式サイト](http://warpspire.com/kss/syntax/)）
+KSS documentation format. 
+([KSS syntax](http://warpspire.com/kss/syntax/))
 
-### 共通
+### Common
 
-最低限の「タイトル」と「説明」は書いてください。
+Minimal comments.
 
 ```scss
-// タイトル
+// <title>
 //
-// 説明
+// <description>
 ```
 
-スタイルガイドに表示したい場合は「Styleguide」目次番号を追加します。
+Minimal styleguide comments.
 
 ```scss
-// タイトル
+// <title>
 //
-// 説明
+// <description>
+//
+// Markup: 
+// <markup sample>
 //
 // Styleguide X.X.X.
 ```
 
-消してしまいたいけど、まだ参照している箇所があって消せない場合は、「Deprecated」で非推奨の旨を記載してください。
+Deprecated styles.
 
 ```scss
-// タイトル
+// <title>
 //
-// 説明
+// <description>
 //
-// Deprecated: 推奨しない理由
-// July 18, 2014. （推奨しない事にした日付）
+// Deprecated: <deprecated reason>
+// July 18, 2014.（deprecated date）
 ```
 
-### 状態を持たないスタイル
+### UI styles (e.g. Buttons, Lists)
 
 ```scss
-// タイトル
+// <title>
 //
-// 説明
-//
-// Markup: 
-// サンプルマークアップ（出力例など）
-// 
-// Styleguide X.X.X. （生成されるスタイルガイド上の目次番号）
-```
-
-### 状態を持つスタイル（ボタン、リンクなどUI系）
-
-状態を持つスタイルは「擬似要素」を記載する事でサンプルマークアップが生成されます。
-
-```scss
-// タイトル
-//
-// 説明
+// <description>
 //
 // Markup:
-// サンプルマークアップ（出力例など）
+// <markup sample>
 //
-// 擬似要素 ( modifier or pseudo class ) - 説明
-// 擬似要素 ( modifier or pseudo class ) - 説明
+// <modifier or pseudo class> - <descriptions>
+// <modifier or pseudo class> - <descriptions>
 // 
-// Styleguide X.X.X. （生成されるスタイルガイド上の目次番号）
+// Styleguide X.X.X.
 ```
 
-### Mixin または Function 系
+### Mixin or Function
 
 ```scss
-// タイトル
+// <title>
 //
-// 説明
+// <description>
 //
 // **Usage:**
 //
-// 使い方
+// <usage>
 //
 // **Parameters:**
 //
-// * `パラメータ名` - パラメータ説明
-// * `パラメータ名` - パラメータ説明
+// * `<name>` - <description>
+// * `<name>` - <description>
 //
 //
 // **Return:**
 //
-// 戻り値（Functionの場合）
+// <return>（function only）
 //
 // Markup: 
-// サンプルマークアップ（出力例など）
+// <markup sample>
 // 
-// Compatible in XXX, XXX, XXX. （対応ブラウザー、機種など）
+// Compatible in XXX, XXX, XXX. （support browsers）
 //
-// Styleguide X.X.X. （生成されるスタイルガイド上の目次番号）
+// Styleguide X.X.X.
 ```
