@@ -32,8 +32,7 @@ a[ng-click] {
 // =============================================================================
 
 @mixin font-size($size) {
-  // rem サポートブラウザは現在 Firefox3.6+, Chrome, Safari5, IE9+ のみ
-  // rem 非対応ブラウザの為に px も設定しておく
+  // `rem` supported browser: Firefox3.6+, Chrome, Safari5, IE9+
   font-size: $size+px;
   font-size: $size/10+rem;
 }
@@ -54,16 +53,15 @@ $container-max-width: 960px;
 // (http://breakpoint-sass.com/)
 // =====================================
 
-$breakpoint-desktop: 900px; // スクリーン幅が 900px 以上だったらデスクトップ
-$breakpoint-tablet: 600px; // スクリーン幅が 600px 以上だったらタブレット
-// それ以外はモバイル（モバイルファスト！）
+$breakpoint-desktop: 900px;
+$breakpoint-tablet: 600px;
+// otherwise mobile (mobile first)
 
 // =====================================
 // Susy
 // (http://susy.oddbird.net/)
 // =====================================
 
-// Grid レイアウトが必要な場合は Susy が便利（今回は Grid レイアウト要らなさそう）
 $susy: (
   global-box-sizing: border-box,
   use-custom: (rem: true)
@@ -76,15 +74,20 @@ $susy: (
 // =============================================================================
 
 html {
-  font-size: 62.5%; // これで 1em が 10px と同じになる
+  font-size: 62.5%; // this mean 1em equal to 10px
 }
 
 body{
-  // フォント指定（参照：http://www.dtp-transit.jp/misc/web/post_1881.html）
-  font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif; // ゴシック体
-  //font-family: "Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "メイリオ", Meiryo, serif;// 明朝体
-  //font-family: "Osaka－等幅", Osaka-mono, "ＭＳ ゴシック", "MS Gothic", monospace; // 等幅書体
-  //font-family: "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", Meiryo, fantasy; // OS X限定 丸ゴシック体
+  // Japanese font family
+  //（http://www.dtp-transit.jp/misc/web/post_1881.html）
+  // 1. ゴシック体
+  font-family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+  // 2. 明朝体
+  //font-family: "Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "メイリオ", Meiryo, serif;
+  // 3. 等幅書体
+  //font-family: "Osaka－等幅", Osaka-mono, "ＭＳ ゴシック", "MS Gothic", monospace;
+  // 4. OS X限定 丸ゴシック体
+  //font-family: "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", Meiryo, fantasy;
 
   @include font-size(14);
 }

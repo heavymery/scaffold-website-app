@@ -4,7 +4,7 @@
 // Imports
 // =============================================================================
 
-@import 'compass';
+@import "compass";
 
 // =====================================
 // Non Imported Compass Modules
@@ -42,11 +42,11 @@
 //
 // Styleguide 9.
 
-@import 'modules/sprite';
+@import "modules/sprite";
 
 @import "modules/image";
 
-@import 'modules/animation';
+@import "modules/animation";
 
 // =============================================================================
 // Configuration
@@ -57,4 +57,6 @@
 // (http://compass-style.org/reference/compass/support/)
 // =====================================
 
-// $supported-browsers: ("chrome", "safari"); // defaults to all.
+//$supported-browsers: ("chrome", "firefox", "ie", "safari", "opera"); // defaults to all.
+
+$debug-browser-support: false;

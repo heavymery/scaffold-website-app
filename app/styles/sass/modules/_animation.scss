@@ -1,7 +1,9 @@
 // Animation
 //
-// 良く使われる Mixin
-// （CSSアニメーション参考：[Animation.css](http://daneden.me/animate)）
+// Common animations.
+//
+// Useful CSS animation resources.
+// * [Animation.css](http://daneden.me/animate)）
 //
 // Styleguide 9.2.
 
@@ -12,12 +14,12 @@
 // blink-animation([$key-frame-name], [$max-alpha:1], [$min-alpha])
 // ```
 //
-// 点滅アニメーション
+// Blinking animation.
 //
 // **Usage:**
 //
 // ```scss
-// @include blink-animation(’warning-animation', .8, .2);
+// @include blink-animation('warning-animation', .8, .2);
 // 
 // .warning {
 //   @include animation(warning-animation .5s);
@@ -26,9 +28,9 @@
 //
 // **Parameters:**
 //
-// * `$key-frame-name`  - 新しい点滅アニメーション名（デフォルトは'blink-animation'）
-// * `$max-alpha`       - 点滅時の最大アルファ値
-// * `$min-alpha`       - 点滅時の最小アルファ値
+// * `$key-frame-name`  - Keyframes name. (default: 'blink-animation')
+// * `$max-alpha`       - Blinking maximum alpha. (default: 1.0)
+// * `$min-alpha`       - Blinking minimum alpha. (default: 0.0)
 //
 // Compatible in iOS Safari 4.0+, Android Browser 2.2+.
 //
@@ -51,12 +53,12 @@
 // glow-animation([$key-frame-name], [$color], [$blur], [$distance])
 // ```
 //
-// 発光アニメーション（要素の周りを指定した色の光で発光させる）
+// Glow animation.
 //
 // **Usage:**
 //
 // ```scss
-// @include glow-animation(’warning-animation', #f00, 4px, 10px);
+// @include glow-animation('warning-animation', #f00, 4px, 10px);
 // 
 // .warning {
 //   @include animation(warning-animation .5s);
@@ -65,10 +67,10 @@
 //
 // **Parameters:**
 //
-// * `$key-frame-name`  - 新しい発光アニメーション名（デフォルトは'glow-animation'）
-// * `$color`           - 光の色
-// * `$blur`            - ぼかしの強さ
-// * `$distance`        - 光る枠の厚さ
+// * `$key-frame-name`  - Keyframes name. (default: 'glow-animation')
+// * `$color`           - Light color.
+// * `$blur`            - Blur strength. (default: 10px)
+// * `$distance`        - Light distance. (default: 6px)
 //
 // Compatible in iOS Safari 4.0+, Android Browser 2.2+.
 //
@@ -88,40 +90,78 @@
 }
 
 
-// slide-animation
+// slide-animation-horizontal
 //
 // ```scss
 // slide-animation([$key-frame-name], [$start-x], [$end-x])
 // ```
 //
-// スライドアニメーション（要項方向）
+// Slide animation. (horizontal)
 //
 // **Usage:**
 //
 // ```scss
-// @include slide-animation(’ticker-animation', 320px, 0);
+// @include slide-animation('slide-from-right', 320px, 0);
 // 
 // .ticker {
-//   @include animation(ticker-animation .5s);
+//   @include animation(slide-from-right .5s);
 // }
 // ```
 //
 // **Parameters:**
 //
-// * `$key-frame-name` - 新しいスライドアニメーション名（デフォルトは'slide-animation'）
-// * `$startX`         - スライド開始X座標
-// * `$endX`           - スライド終了X座標
+// * `$key-frame-name` - Keyframes name. (default: 'slide-animation-horizontal')
+// * `$startX`         - Slide start X dimension. (default: 0)
+// * `$endX`           - Slide end X dimension. (default: 320px)
 //
 // Compatible in iOS Safari 4.0+, Android Browser 2.2+.
 //
 // Styleguide 9.2.3.
-@mixin slide-animation($key-frame-name:'slide-animation', $start-x: 0, $end-x: 320px) {
+@mixin slide-animation($key-frame-name:'slide-animation-horizontal', $start-x: 0, $end-x: 320px) {
   @include keyframes($key-frame-name) {
     0% {
       @include transform(translateX($start-x));
     }
     100% {
       @include transform(translateX($end-x));
+    }
+  }
+}
+
+// slide-animation-vertical
+//
+// ```scss
+// slide-animation([$key-frame-name], [$start-x], [$end-x])
+// ```
+//
+// Slide animation. (vertical)
+//
+// **Usage:**
+//
+// ```scss
+// @include slide-animation(’slide-from-down', 640px, 0);
+//
+// .ticker {
+//   @include animation(slide-from-down .5s);
+// }
+// ```
+//
+// **Parameters:**
+//
+// * `$key-frame-name` - Keyframes name. (default: 'slide-animation-vertical')
+// * `$startY`         - Slide start Y dimension. (default: 0)
+// * `$endY`           - Slide end Y dimension. (default: 640px)
+//
+// Compatible in iOS Safari 4.0+, Android Browser 2.2+.
+//
+// Styleguide 9.2.3.
+@mixin slide-animation($key-frame-name:'slide-animation-vertical', $start-y: 0, $end-y: 640px) {
+  @include keyframes($key-frame-name) {
+    0% {
+      @include transform(translateY($start-y));
+    }
+    100% {
+      @include transform(translateY($end-y));
     }
   }
 }
