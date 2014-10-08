@@ -1,6 +1,6 @@
-// Sprite (modules/sprite)
+// Sprite
 //
-// Compass で自動生成したスプライト画像を背景に設定する際に便利な Mixin 
+// Compass sprite helper mixins. (support for high definition displays)
 //
 // Styleguide 9.1.
 
@@ -11,7 +11,7 @@
 // get-sprite($path, [$sprite-layout])
 // ```
 //
-// 指定した画像フォルダーのパスからスプライト画像を生成する。
+// Get generated sprite map instance.
 //
 // **Usage:**
 //
@@ -21,13 +21,13 @@
 //
 // **Parameters:**
 //
-// * `$path`          - スプライトのパーツ画像が保存されているフォルダーのパス
-// * `$sprite-layout` - 自動生成されるスプライト画像のレイアウト（デフォルト：smart）
+// * `$path`          - Source images path pattern.
+// * `$sprite-layout` - Output sprite image layout. (default: smart)
 //
 //
 // **Return:**
 //
-// スプライト自動作成時に生成されるスプライトマップのインスタンス
+// Compass sprite map instance.
 //
 // Compatible in iOS Safari 4.0+, Android Browser 2.2+.
 //
@@ -43,7 +43,7 @@
 // sprite($sprite-map, $part-name, [$pixel-ratio])
 // ```
 //
-// スプライト画像から背景を設定する。
+// Set sprite as background image。
 //
 // **Usage:**
 //
@@ -57,9 +57,9 @@
 // 
 // **Parameters:**
 //
-// * `$sprite-map`  - スプライト自動作成時に生成されるスプライトマップのインスタンス
-// * `$part-name`   - 取り出したいパーツの名前（スプライト化される前の画像ファイル名）
-// * `$pixel-ratio` - ピクセルアスペクト比（Retina:2）
+// * `$sprite-map`  - Compass sprite map instance.
+// * `$part-name`   - Sprite parts name.
+// * `$pixel-ratio` - Pixel ratio. (default: 1)
 //
 // Compatible in iOS Safari 4.0+, Android Browser 2.2+.
 //
@@ -86,7 +86,7 @@
 // sprite-base($sprite-map, [$pixel-ratio])
 // ```
 //
-// スプライト画像から背景を設定する。（ベースのみ設定）
+// Set sprite as background image. (for sprite base)
 //
 // **Usage:**
 //
@@ -105,8 +105,8 @@
 //
 // **Parameters:**
 //
-// * `$sprite-map`  - スプライト自動作成時に生成されるスプライトマップのインスタンス
-// * `$pixel-ratio` - ピクセルアスペクト比（Retina:2）
+// * `$sprite-map`  - Compass sprite map instance.
+// * `$pixel-ratio` - Pixel ratio. (default: 1)
 //
 // Compatible in iOS Safari 4.0+, Android Browser 2.2+.
 //
@@ -126,7 +126,7 @@
 // sprite-part($sprite-map, $part-name, [$pixel-ratio])
 // ```
 //
-// スプライト画像から背景を設定する。（パーツのみ設定）
+// Set sprite as background image. (for sprite part)
 //
 // **Usage:**
 //
@@ -145,9 +145,9 @@
 //
 // **Parameters:**
 //
-// * `$sprite-map`  - スプライト自動作成時に生成されるスプライトマップのインスタンス
-// * `$part-name`   - 取り出したいパーツの名前（スプライト化される前の画像ファイル名）
-// * `$pixel-ratio` - ピクセルアスペクト比（Retina:2）
+// * `$sprite-map`  - Compass sprite map instance.
+// * `$part-name`   - Sprite parts name.
+// * `$pixel-ratio` - Pixel ratio. (default: 1)
 //
 // Compatible in iOS Safari 4.0+, Android Browser 2.2+.
 //

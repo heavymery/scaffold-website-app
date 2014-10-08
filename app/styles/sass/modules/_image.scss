@@ -1,6 +1,6 @@
-// Image (modules/image)
+// Image
 //
-// 静的な画像を背景に設定する際に便利な Mixin 
+// Image styling helper mixins. (support for high definition displays)
 //
 // Styleguide 9.3.
 
@@ -11,7 +11,7 @@
 // image-background($image-url, [$pixel-ratio])
 // ```
 //
-// 画像を背景に設定する。（要素のサイズを自動設定）
+// Set background image with automated size setting.
 //
 // **Usage:**
 //
@@ -23,8 +23,8 @@
 // 
 // **Parameters:**
 //
-// * `$image-url`   - 画像URL
-// * `$pixel-ratio` - ピクセルアスペクト比（Retina:2）
+// * `$image-url`   - Image url. (using image-url function)
+// * `$pixel-ratio` - Pixel ratio. (default: 1)
 //
 // Compatible in iOS Safari 4.0+, Android Browser 2.2+.
 //
