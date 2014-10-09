@@ -44,9 +44,9 @@ module.exports = function(grunt) {
       livereload: {
         options: {
           port: CONNECT_PORT,
+          livereload: LIVERELOAD_PORT,
           middleware: function(connect) {
             return [
-              require('connect-livereload')({ hostname: LIVERELOAD_HOST, port: LIVERELOAD_PORT }),
               connect.static(require('path').resolve(grunt.config('path.app')))
             ]
           }
