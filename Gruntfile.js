@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
   var CONNECT_HOST = grunt.option('connect-host') || '0.0.0.0';
   var CONNECT_PORT = grunt.option('connect-port') || 9001;
-  
+
   var LIVERELOAD_HOST = grunt.option('livereload-host') || '0.0.0.0';
   var LIVERELOAD_PORT = grunt.option('livereload-port') || 35731;
 
@@ -25,7 +25,18 @@ module.exports = function(grunt) {
 //--------------------------------------
 
   grunt.initConfig({
-    
+
+    path: {
+      app: 'app',
+      appImages: '<%= path.app %>/images',
+      appStyles: '<%= path.app %>/styles',
+      appScripts: '<%= path.app %>/scripts',
+      dist: 'dist',
+      distImages: '<%= path.dist %>/images',
+      distStyles: '<%= path.dist %>/styles',
+      distScripts: '<%= path.dist %>/scripts'
+    },
+
     connect: {
       options: {
         hostname: CONNECT_HOST
@@ -36,7 +47,7 @@ module.exports = function(grunt) {
           middleware: function(connect) {
             return [
               require('connect-livereload')({ hostname: LIVERELOAD_HOST, port: LIVERELOAD_PORT }),
-              connect.static(require('path').resolve('app'))
+              connect.static(require('path').resolve(grunt.config('path.app')))
             ]
           }
         }
@@ -46,7 +57,7 @@ module.exports = function(grunt) {
           port: CONNECT_PORT,
           middleware: function (connect) {
             return [
-              connect.static(require('path').resolve('dist'))
+              connect.static(require('path').resolve(grunt.config('path.dist')))
             ];
           }
         }
@@ -59,10 +70,10 @@ module.exports = function(grunt) {
           livereload: LIVERELOAD_PORT
         },
         files: [
-          'app/images/**/*.{png,jpg,gif,svg}',
-          'app/styles/**/*.css',
-          'app/scripts/**/*.js',
-          'app/**/*.html'
+          '<%= path.appImages %>/**/*.{png,jpg,gif,svg}',
+          '<%= path.appStyles %>/**/*.css',
+          '<%= path.appScripts %>/**/*.js',
+          '<%= path.app %>/**/*.html'
         ]
       }
     },
@@ -72,7 +83,7 @@ module.exports = function(grunt) {
         files: [{
           dot: true,
           src: [
-            'dist'
+            '<%= path.dist %>'
           ]
         }]
       }
@@ -83,8 +94,8 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: 'app',
-          dest: 'dist',
+          cwd: '<%= path.app %>',
+          dest: '<%= path.dist %>',
           src: [
             '**/*.{png,jpg,gif,svg}',
             '**/*.html',
@@ -95,30 +106,30 @@ module.exports = function(grunt) {
         }]
       }
     },
-    
+
     useminPrepare: {
-      html: 'app/index.html',
+      html: '<%= path.app %>/index.html',
       options: {
-        dest: 'dist'
+        dest: '<%= path.dist %>'
       }
     },
 
     filerev: {
       images: {
-        src: 'dist/images/**/*.{png,jpg,gif,svg}'
+        src: '<%= path.distImages %>/**/*.{png,jpg,gif,svg}'
       },
       styles: {
-        src: 'dist/styles/**/*.css'
+        src: '<%= path.distStyles %>/**/*.css'
       },
       scripts: {
-        src: 'dist/scripts/**/*.js'
+        src: '<%= path.distScripts %>/**/*.js'
       }
     },
 
     usemin: {
       html: [
-        'dist/**/*.html',
-        '!dist/bower_components/**/*.html'
+        '<%= path.dist %>/**/*.html',
+        '!<%= path.dist %>/bower_components/**/*.html'
       ],
       // css: 'dist/styles/**/*.css' // Replacing css image url not needed. (Compass doing cash busting)
     },
@@ -131,15 +142,15 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'dist',
+          cwd: '<%= path.dist %>',
           src: [
             'index.html'
           ],
-          dest: 'dist'
+          dest: '<%= path.dist %>'
         }]
       }
     },
-    
+
     image: {
       dist: {
         options: {
@@ -157,31 +168,31 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'dist/images',
+          cwd: '<%= path.distImages %>',
           src: '**/*.{png,jpg,gif,svg}',
-          dest: 'dist/images',
+          dest: '<%= path.distImages %>',
         }]
       }
     },
-    
+
     shell: {
       options: {
         stdout: true,
         stderr: true
       },
-      
+
       compassCompile: {
         command: 'bundle exec compass compile'
       },
       compassWatch: {
         command: 'bundle exec compass watch'
       },
-      
+
       styleguide: {
-        command: 'mkdir -p app/styleguide; node_modules/kss/bin/kss-node app/styles/sass app/styleguide -t app/styleguide-template --css app/styles/main.css'
+        command: 'mkdir -p <%= path.app %>/styleguide; node_modules/kss/bin/kss-node <%= path.appStyles %>/sass <%= path.app %>/styleguide -t <%= path.app %>/styleguide-template --css <%= path.appStyles %>/main.css'
       }
     }
-    
+
   }); // grunt.initConfig
 
 //--------------------------------------
@@ -191,21 +202,21 @@ module.exports = function(grunt) {
   // Serve task
   grunt.registerTask('serve', 'Launch local web server and enable live-reloading.', function(target) {
     var tasks;
-    
+
     if (target === 'dist') {
       tasks = [
         'connect:dist:keepalive'
       ];
     } else {
       tasks = [
-        'connect:livereload', 
+        'connect:livereload',
         'shell:compassWatch',
         'watch'
       ];
     }
-    
+
     grunt.config('shell.compassWatch.options.async', true);
-    
+
     grunt.task.run(tasks);
   });
 
@@ -235,5 +246,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'build'
   ]);
-  
+
 };
