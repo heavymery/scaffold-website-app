@@ -17,7 +17,6 @@ module.exports = function(grunt) {
   var CONNECT_HOST = grunt.option('connect-host') || '0.0.0.0';
   var CONNECT_PORT = grunt.option('connect-port') || 9001;
 
-  var LIVERELOAD_HOST = grunt.option('livereload-host') || '0.0.0.0';
   var LIVERELOAD_PORT = grunt.option('livereload-port') || 35731;
 
 //--------------------------------------
