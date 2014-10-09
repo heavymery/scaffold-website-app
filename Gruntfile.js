@@ -72,7 +72,8 @@ module.exports = function(grunt) {
           '<%= path.appImages %>/**/*.{png,jpg,gif,svg}',
           '<%= path.appStyles %>/**/*.css',
           '<%= path.appScripts %>/**/*.js',
-          '<%= path.app %>/**/*.html'
+          '<%= path.app %>/**/*.html',
+          '!<%= path.app %>/bower_components/**/*'
         ]
       }
     },
