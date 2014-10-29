@@ -99,6 +99,7 @@ module.exports = function(grunt) {
           src: [
             '**/*.{png,jpg,gif,svg}',
             '**/*.html',
+            '*.ico',
             '!bower_components/**',
             '!styleguide/**/*.html',
             '!styleguide-template/**/*.html'
@@ -137,7 +138,9 @@ module.exports = function(grunt) {
     htmlmin: {
       options: {
         removeComments: true,
-        collapseWhitespace: true
+        collapseWhitespace: true,
+        minifyJS: true,
+        minifyCSS: true
       },
       dist: {
         files: [{
