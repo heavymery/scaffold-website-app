@@ -117,6 +117,16 @@ body{
     @include font-size(20);
     @include line-height(50);
     padding: 0 10px;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 6px 8px -6px 0;
+      @include background(image-url('logo.png') no-repeat);
+      @include background-size(contain);
+    }
   }
 } // #header
 
@@ -128,6 +138,26 @@ body{
   p { 
     padding: 10px;
     @include font-size(20);
+  }
+
+  $sample-sprite: get-sprite("sample");
+
+  .sample-sprite {
+    display: inline-block;
+
+    margin: 0 5px 0 0;
+    &:last-child {
+      margin: 0 0 0 0;
+    }
+
+    @include sprite-base($sample-sprite, 2);
+
+    &.s { @include sprite-part($sample-sprite, 's', 2); }
+    &.p { @include sprite-part($sample-sprite, 'p', 2); }
+    &.r { @include sprite-part($sample-sprite, 'r', 2); }
+    &.i { @include sprite-part($sample-sprite, 'i', 2); }
+    &.t { @include sprite-part($sample-sprite, 't', 2); }
+    &.e { @include sprite-part($sample-sprite, 'e', 2); }
   }
 } // #content
 
