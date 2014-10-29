@@ -6,6 +6,7 @@ require 'breakpoint' # Help with writing media queries.
 # Set this to the root of your project when deployed:
 http_path = "/"
 http_images_path = "../images"
+http_generated_images_path = "../images"
 css_dir = "app/styles"
 sass_dir = "app/styles/sass"
 images_dir = "app/images"
@@ -29,9 +30,5 @@ line_comments = true
 # Enable CSS source maps
 sourcemap = true
 
-# Set cash busting function with MD5 hash
-asset_cache_buster do |http_path, real_path|
-  if File.exists?(real_path)
-    Digest::MD5.file(real_path.path).hexdigest[0,8]
-  end
-end
+# Disable asset cash buster
+asset_cache_buster :none

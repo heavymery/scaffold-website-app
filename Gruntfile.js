@@ -26,6 +26,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     path: {
+      tmp: '.tmp',
+      tmpImages: '<%= path.tmp %>/images',
       app: 'app',
       appImages: '<%= path.app %>/images',
       appStyles: '<%= path.app %>/styles',
@@ -97,18 +99,26 @@ module.exports = function(grunt) {
           cwd: '<%= path.app %>',
           dest: '<%= path.dist %>',
           src: [
-            '**/*.{png,jpg,gif,svg}',
             '**/*.html',
+            '*.ico',
             '!bower_components/**',
             '!styleguide/**/*.html',
             '!styleguide-template/**/*.html'
+          ]
+        }, {
+          expand: true,
+          dot: true,
+          cwd: '<%= path.tmpImages %>',
+          dest: '<%= path.distImages %>',
+          src: [
+            '**/*.{png,jpg,gif,svg}'
           ]
         }]
       }
     },
 
     useminPrepare: {
-      html: '<%= path.app %>/index.html',
+      html: '<%= path.app %>/**/*.html',
       options: {
         dest: '<%= path.dist %>'
       }
@@ -131,13 +141,15 @@ module.exports = function(grunt) {
         '<%= path.dist %>/**/*.html',
         '!<%= path.dist %>/bower_components/**/*.html'
       ],
-      // css: 'dist/styles/**/*.css' // Replacing css image url not needed. (Compass doing cash busting)
+      css: '<%= path.distStyles %>/**/*.css'
     },
 
     htmlmin: {
       options: {
         removeComments: true,
-        collapseWhitespace: true
+        collapseWhitespace: true,
+        minifyJS: true,
+        minifyCSS: true
       },
       dist: {
         files: [{
@@ -168,9 +180,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= path.distImages %>',
+          cwd: '<%= path.appImages %>',
           src: '**/*.{png,jpg,gif,svg}',
-          dest: '<%= path.distImages %>',
+          dest: '<%= path.tmpImages %>',
         }]
       }
     },
@@ -225,13 +237,13 @@ module.exports = function(grunt) {
     var tasks = [
       'shell:compassCompile',
       'clean:dist',
+      'newer:image:dist',
       'copy:build',
-      'image:dist',
       'useminPrepare',
       'concat',
       'cssmin',
       'filerev:images',
-      // 'usemin:css', // Replacing css image url not needed. (Compass doing cash busting)
+      'usemin:css',
       'uglify',
       'filerev:styles',
       'filerev:scripts',
