@@ -166,7 +166,21 @@ $ grunt shell:styleguide
 
 ## Deploy
 
-Deploying to Github Pages. 
+Deploying to [Github Pages](https://pages.github.com/). 
+
+### User or organization site
+
+**CAUTION:** User or organization site using `master` branch for Github Page. Change the default branch to develop (or whatever).
+
+* GitHub.com -> `http://{user-name(or organization-name)}.github.io/`
+* GitHub Enterprise -> `http://{github-domain}/pages/{user-name(or organization-name)}/{user-name(or organization-name)}/`
+
+```sh
+$ git push origin :master # if push rejected
+$ git subtree push --prefix dist origin master
+```
+
+### Project site
 
 * GitHub.com -> `http://{user-name}.github.io/{repository-name}/`
 * GitHub Enterprise -> `http://{github-domain}/pages/{user-name}/{repository-name}/`
