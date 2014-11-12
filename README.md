@@ -65,10 +65,10 @@ You first need to install [Node.js](http://nodejs.org/) and [Ruby](https://www.r
 2. Install ruby-build (https://github.com/sstephenson/ruby-build#readme)
 3. Install ruby (version of described in `.ruby-version`)
 
-```sh
-$ rbenv install
-$ rbenv rehash # Rehash
-```
+  ```sh
+  $ rbenv install
+  $ rbenv rehash # Rehash
+  ```
 
 ### Install Bundler
 
@@ -85,10 +85,10 @@ $ rbenv rehash # Rehash
 2. Install node-build (https://github.com/riywo/node-build#install)
 3. Install node (version of described in `.node-version`)
 
-```sh
-$ ndenv install
-$ ndenv rehash # Rehash
-```
+  ```sh
+  $ ndenv install
+  $ ndenv rehash # Rehash
+  ```
 
 ### Ruby gems / Node modules / Bower packages
 
