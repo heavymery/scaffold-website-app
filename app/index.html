@@ -46,16 +46,17 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+    
+    <!-- TODO: Delete if do not support IE 7~8 -->
+    <!--[if lt IE 9]>
+      <!-- build:js scripts/vendor/html5shiv.js -->
+      <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
+      <!-- endbuild -->
+    <![endif]-->
   </head>
   
   <body>
-    <!--[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-    
-    <!-- TODO: Delete above if do not support IE 7~8 (otherwise delete below) -->
-    
+    <!-- TODO: Delete if support IE 7~8 -->
     <!--[if lt IE 9]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -88,6 +89,22 @@
         </div>
       </footer>
     </div>
+    
+    <!-- TODO: Delete if do not support IE 7~8 -->
+    <!--[if lt IE 9]>
+      <!-- build:js scripts/vendor/es5-shim.js -->
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <!-- endbuild -->
+       
+      <!-- build:js scripts/vendor/json3.js -->
+      <script src="bower_components/json3/lib/json3.js"></script>
+      <!-- endbuild -->
+      
+      <!-- build:js scripts/vendor/css3-mediaqueries-js -->
+      <script src="bower_components/css3-mediaqueries-js/css3-mediaqueries-js"></script>
+      <!-- endbuild -->
+    <![endif]-->
+    
     
     <!-- build:js scripts/vendor.js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
