@@ -13,8 +13,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui"><!-- TODO: Delete 'minimal-ui' if not needed. -->
     
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
+    <!-- TODO: Change favicon. -->
+    <!--<link rel="icon" href="favicon.png" type="image/png">-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -65,21 +67,59 @@
       <header id="header">
         <div class="container">
           <h1 class="logo">Website & app scaffolding.</h1>
+        
+          <nav>
+            <ul>
+              <li><a href="#about">About</a></li><!--
+           --><li><a href="#github">GitHub</a></li><!--
+           --><li><a href="#support">Support</a></li>
+            </ul>
+          </nav>
         </div>
       </header>
       
       <div id="content">
         <div class="container">
-          <p>Add content here.</p>
-          <p><img src="images/logo.png" width="100" height="100"></p>
-          <p>
-            <span class="sample-sprite s">S</span><!--
-         --><span class="sample-sprite p">P</span><!--
-         --><span class="sample-sprite r">R</span><!--
-         --><span class="sample-sprite i">I</span><!--
-         --><span class="sample-sprite t">T</span><!--
-         --><span class="sample-sprite e">E</span>
-          </p>
+          <div class="primary-content">
+            <h2>Primary Content</h2>
+
+            <h3>Sample inline image</h3>
+            <p><img src="images/logo.png" width="100" height="100"></p>
+
+            <h3>Sample css sprite image</h3>
+            <p>
+              <span class="sample-sprite s">S</span><!--
+           --><span class="sample-sprite p">P</span><!--
+           --><span class="sample-sprite r">R</span><!--
+           --><span class="sample-sprite i">I</span><!--
+           --><span class="sample-sprite t">T</span><!--
+           --><span class="sample-sprite e">E</span>
+            </p>
+          </div>
+
+          <div class="secondary-content">
+            <h2>Secondary Content</h2>
+          </div>
+
+          <div class="third-content">
+            <h2>Third Content</h2>
+            
+            <div>
+              <h3>Sample column</h3>
+            </div>
+
+            <div>
+              <h3>Sample column</h3>
+            </div>
+            
+            <div>
+              <h3>Sample column</h3>
+            </div>
+
+            <div>
+              <h3>Sample column</h3>
+            </div>
+          </div>
        </div>
       </div>
       
