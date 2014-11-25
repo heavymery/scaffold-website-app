@@ -28,41 +28,39 @@ a[ng-click] {
 // =============================================================================
 
 // =====================================
+// Responsive Units
+// =====================================
+
+@mixin px-with-rem($property, $value) {
+  #{$property}: $value+px;
+  #{$property}: $value/10+rem; // `rem` supported browser: Firefox3.6+, Chrome, Safari5, IE9+
+}
+
+// =====================================
 // Font
 // =====================================
 
-@mixin font-size($value) {
-  // `rem` supported browser: Firefox3.6+, Chrome, Safari5, IE9+
-  font-size: $value+px;
-  font-size: $value/10+rem;
-}
-
-@mixin line-height($value) {
-  line-height: $value+px;
-  line-height: $value/10+rem;
-}
-
 @mixin font-weight($value) {
   @if $value == thin {
-    font-size: 100;
+    font-weight: 100;
   } @else if $value == extra-light {
-    font-size: 200;
+    font-weight: 200;
   } @else if $value == light {
-    font-size: 300;
+    font-weight: 300;
   } @else if $value == normal {
-    font-size: 400;
+    font-weight: 400;
   } @else if $value == medium {
-    font-size: 500;
+    font-weight: 500;
   } @else if $value == demi-bold {
-    font-size: 600;
+    font-weight: 600;
   } @else if $value == bold {
-    font-size: 700;
+    font-weight: 700;
   } @else if $value == heavy {
-    font-size: 800;
+    font-weight: 800;
   } @else if $value == black {
-    font-size: 900;
+    font-weight: 900;
   } @else {
-    font-size: 400;
+    font-weight: 400;
   }
 }
 
@@ -91,7 +89,7 @@ $susy: (
   global-box-sizing: border-box,
   use-custom: (rem: true),
   debug: (
-    image: show,
+    //image: show,
     //color: blue,
     //output: background,
     //toggle: top right,
@@ -99,6 +97,12 @@ $susy: (
 );
 
 @include border-box-sizing;
+
+// =====================================
+// Vertical Rhythm
+// =====================================
+
+$gutter-height: 12;
 
 // =====================================
 // Compass Vertical Rhythm
@@ -134,7 +138,9 @@ body{
   // 4. OS X限定 丸ゴシック体
   // font-family: "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", Meiryo, fantasy;
 
-  @include font-size(14);
+  @include px-with-rem(font-size, 14);
+
+  
 }
 
 // =====================================
@@ -143,6 +149,19 @@ body{
 
 #main-container {
   overflow: hidden;
+
+
+  .debug-column {
+    // TODO: susy debug image is not pixel perfect...
+  }
+  
+  // Vertical Rhythm debug line
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)) repeat-y;
+  background-size: 100% $gutter-height + px;
+  background-size: 100% $gutter-height/10 + rem;
+  background-origin: border-box;
+  background-clip: border-box;
+
 } // #main-container
 
 .container {
@@ -158,24 +177,26 @@ body{
 // =====================================
 
 #header {
-  padding: 10px 0;
-  background: #666;
+  //background: #666;
   
   .logo {
     @include breakpoint($breakpoint-tablet) {
       @include span(8);
     }
 
-    @include font-size(20);
+    @include px-with-rem(margin-top, $gutter-height);
+    @include px-with-rem(margin-bottom, $gutter-height);
+
+    @include px-with-rem(font-size, 16);
     @include font-weight(bold);
-    @include line-height(30);
+    @include px-with-rem(line-height, $gutter-height * 2);
 
     &:before {
       content: '';
       display: inline-block;
-      vertical-align: top;
-      width: 30px;
-      height: 30px;
+      vertical-align: baseline;
+      @include px-with-rem(width, 16);
+      @include px-with-rem(height, 16);
       margin-right: 8px;
       @include background(image-url('logo.png') no-repeat);
       @include background-size(contain);
@@ -195,9 +216,9 @@ body{
         margin-right: auto;
       }
 
-      @include font-size(14);
+      @include px-with-rem(font-size, 14);
       @include font-weight(medium);
-      @include line-height(30);
+      @include px-with-rem(line-height, 30);
     }
   }
 } // #header
@@ -254,14 +275,14 @@ body{
 
   h2 {
     margin: 5px auto;
-    @include font-size(16);
+    @include px-with-rem(font-size, 16);
     @include font-weight(medium);
     line-height: 1.5;
   }
 
   h3 {
     margin: 5px auto;
-    @include font-size(14);
+    @include px-with-rem(font-size, 14);
     @include font-weight(medium);
     line-height: 1.5;
   }
@@ -308,8 +329,8 @@ body{
   background: #666;
   
   .copyright {
-    @include font-size(14px);
-    @include line-height(22);
+    @include px-with-rem(font-size, 14);
+    @include px-with-rem(line-height, 22);
     text-align: center;
   }
 } // #footer
