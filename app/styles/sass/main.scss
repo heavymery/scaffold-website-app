@@ -89,7 +89,7 @@ $susy: (
   global-box-sizing: border-box,
   use-custom: (rem: true),
   debug: (
-    //image: show,
+    image: show,
     //color: blue,
     //output: background,
     //toggle: top right,
@@ -109,7 +109,8 @@ $gutter-height: 12;
 // (http://compass-style.org/reference/compass/typography/vertical_rhythm/)
 // =====================================
 
-$base-line-height: 12px;
+//$base-line-height: $gutter-height + px;
+$base-line-height: $gutter-height/10 + rem;
 
 // =============================================================================
 // Main style
@@ -138,9 +139,7 @@ body{
   // 4. OS X限定 丸ゴシック体
   // font-family: "ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", Meiryo, fantasy;
 
-  @include px-with-rem(font-size, 14);
-
-  
+  @include px-with-rem(font-size, 14);  
 }
 
 // =====================================
@@ -151,16 +150,16 @@ body{
   overflow: hidden;
 
 
-  .debug-column {
+/*   .debug-column {
     // TODO: susy debug image is not pixel perfect...
   }
-  
+
   // Vertical Rhythm debug line
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)) repeat-y;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)) repeat-y;
   background-size: 100% $gutter-height + px;
   background-size: 100% $gutter-height/10 + rem;
   background-origin: border-box;
-  background-clip: border-box;
+  background-clip: border-box; */
 
 } // #main-container
 
@@ -177,7 +176,7 @@ body{
 // =====================================
 
 #header {
-  //background: #666;
+  background: #666;
   
   .logo {
     @include breakpoint($breakpoint-tablet) {
@@ -194,9 +193,9 @@ body{
     &:before {
       content: '';
       display: inline-block;
-      vertical-align: baseline;
-      @include px-with-rem(width, 16);
-      @include px-with-rem(height, 16);
+      vertical-align: top;
+      @include px-with-rem(width, $gutter-height * 2);
+      @include px-with-rem(height, $gutter-height * 2);
       margin-right: 8px;
       @include background(image-url('logo.png') no-repeat);
       @include background-size(contain);
@@ -208,17 +207,29 @@ body{
       @include span(4 last);
     }
 
-    li {
-      display: inline-block;
+    @include px-with-rem(margin-top, $gutter-height);
+    @include px-with-rem(margin-bottom, $gutter-height);
+
+    @include px-with-rem(font-size, 14);
+    @include font-weight(medium);
+    @include px-with-rem(line-height, $gutter-height * 2);
+    
+    ul {
+      @include display-flex;
+      @include flex-direction(row);
+      @include justify-content(flex-start);
       
-      margin-right: 8px;
-      &:last-child {
-        margin-right: auto;
+      @include breakpoint($breakpoint-tablet) {
+        @include justify-content(space-between);
       }
 
-      @include px-with-rem(font-size, 14);
-      @include font-weight(medium);
-      @include px-with-rem(line-height, 30);
+      li {
+        margin-right: gutter();
+
+        @include breakpoint($breakpoint-tablet) {
+          margin-right: auto;
+        }
+      }
     }
   }
 } // #header
@@ -229,28 +240,60 @@ body{
 
 #content {
   .primary-content {
+    @include px-with-rem(padding-top, $gutter-height);
+    @include px-with-rem(padding-bottom, $gutter-height);
+
     @include breakpoint($breakpoint-desktop) {
       @include span(8);
     }
+
+    background: rgba(255,0,0,.5);
   }
+
   .secondary-content {
+    @include px-with-rem(padding-top, $gutter-height);
+    @include px-with-rem(padding-bottom, $gutter-height);
+
     @include breakpoint($breakpoint-desktop) {
       @include span(4 last);
     }
+
+    background: rgba(0,255,0,.5);
   }
 
   .third-content {
+    @include px-with-rem(padding-top, $gutter-height);
+    @include px-with-rem(padding-bottom, $gutter-height);
+
     clear: both;
     @include clearfix;
     
-    margin-top: 10px;
-    border-top: 1px solid;
+    background: rgba(0,0,255,.5);
 
     > div {
+      @include px-with-rem(padding-top, $gutter-height);
+      @include px-with-rem(padding-bottom, $gutter-height);
+      
+      &:nth-of-type(1) {
+        background: rgba(255,0,0,.5);
+      }
+
+      &:nth-of-type(2) {
+        background: rgba(0,255,0,.5);
+      }
+
+      &:nth-of-type(3) {
+        background: rgba(0,0,255,.5);
+      }
+
+      &:nth-of-type(4) {
+        background: rgba(255,0,0,.5);
+      }
+
       @include breakpoint($breakpoint-tablet) {
         @include span(6);
 
-        &:nth-child(2) {
+        &:nth-of-type(2) {
           @include last;
         }
 
@@ -262,7 +305,7 @@ body{
       @include breakpoint($breakpoint-desktop) {
         @include span(3);
 
-        &:nth-child(2) {
+        &:nth-of-type(2) {
           @include span(3);
         }
 
@@ -274,45 +317,48 @@ body{
   }
 
   h2 {
-    margin: 5px auto;
     @include px-with-rem(font-size, 16);
     @include font-weight(medium);
-    line-height: 1.5;
+    @include px-with-rem(line-height, $gutter-height * 2);
   }
 
   h3 {
-    margin: 5px auto;
     @include px-with-rem(font-size, 14);
     @include font-weight(medium);
-    line-height: 1.5;
+    @include px-with-rem(line-height, $gutter-height * 2);
   }
 
-  p {
-    margin: 5px auto;
-  }
-
-  img {
-    display: block;
-  }
-
-  $sample-sprite: get-sprite("sample");
-
-  .sample-sprite {
-    display: inline-block;
-
-    margin: 0 5px 0 0;
-    &:last-child {
-      margin: 0 0 0 0;
+  .sample-inline-image {
+    img {
+      display: block;
     }
+  }
 
-    @include sprite-base($sample-sprite, 2);
+  .sample-css-sprite-image {
+    @include px-with-rem(line-height, $gutter-height * 4);
+    
+    $sample-sprite: get-sprite("sample");
 
-    &.s { @include sprite-part($sample-sprite, 's', 2); }
-    &.p { @include sprite-part($sample-sprite, 'p', 2); }
-    &.r { @include sprite-part($sample-sprite, 'r', 2); }
-    &.i { @include sprite-part($sample-sprite, 'i', 2); }
-    &.t { @include sprite-part($sample-sprite, 't', 2); }
-    &.e { @include sprite-part($sample-sprite, 'e', 2); }
+    .sample-sprite {
+      display: inline-block;
+      vertical-align: middle;
+
+      margin: 0 5px 0 0;
+      &:last-child {
+        margin: 0 0 0 0;
+      }
+
+      @include px-with-rem(line-height, $gutter-height * 4);
+
+      @include sprite-base($sample-sprite, 2);
+
+      &.s { @include sprite-part($sample-sprite, 's', 2); }
+      &.p { @include sprite-part($sample-sprite, 'p', 2); }
+      &.r { @include sprite-part($sample-sprite, 'r', 2); }
+      &.i { @include sprite-part($sample-sprite, 'i', 2); }
+      &.t { @include sprite-part($sample-sprite, 't', 2); }
+      &.e { @include sprite-part($sample-sprite, 'e', 2); }
+    }
   }
 } // #content
 
@@ -321,16 +367,14 @@ body{
 // =====================================
 
 #footer {
-  position: fixed;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  
   background: #666;
   
   .copyright {
+    @include span(4 last);
     @include px-with-rem(font-size, 14);
-    @include px-with-rem(line-height, 22);
-    text-align: center;
+    @include px-with-rem(line-height, $gutter-height * 3);
+    text-align: right;
   }
 } // #footer
+
+@include sticky-footer($gutter-height * 3 + px, "#main-container", "#sticky-footer-area", "#footer")
