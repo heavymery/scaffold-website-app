@@ -118,7 +118,7 @@ module.exports = function(grunt) {
     },
 
     useminPrepare: {
-      html: '<%= path.app %>/**/*.html',
+      html: '<%= path.app %>/index.html',
       options: {
         dest: '<%= path.dist %>'
       }
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
       },
 
       styleguide: {
-        command: 'mkdir -p <%= path.app %>/styleguide; node_modules/kss/bin/kss-node <%= path.appStyles %>/sass <%= path.app %>/styleguide -t <%= path.app %>/styleguide-template --css <%= path.appStyles %>/main.css'
+        command: 'mkdir -p <%= path.app %>/styleguide; node_modules/kss/bin/kss-node <%= path.appStyles %>/sass <%= path.app %>/styleguide -t styleguide-template --css <%= path.appStyles %>/main.css'
       }
     }
 
