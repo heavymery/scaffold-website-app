@@ -41,7 +41,6 @@ Inspired by below boilerplate & tools.
 |   |   +- main.css
 |   |
 |   +- styleguide
-|   +- styleguide-template
 |   |
 |   +- bower_components
 |   +- scripts
@@ -52,6 +51,7 @@ Inspired by below boilerplate & tools.
 |   +- index.html 
 |
 +- dist
++- styleguide-template
 ```
 
 
