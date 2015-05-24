@@ -48,9 +48,9 @@
 // **Usage:**
 //
 // ```scss
-// $icon-sprite: sprite-map("icon/*.png", $layout: smart);
+// $icon-sprite: get-sprite("icon");
 // 
-// .home-icon {
+// .icon-home {
 //   @include sprite($icon-sprite, 'home', 2);
 // }
 // ```
@@ -65,7 +65,7 @@
 //
 // Styleguide 9.1.2.
 @mixin sprite($sprite-map, $part-name, $pixel-ratio: 1) {
-  background: sprite-url($sprite-map);
+  background-image: sprite-url($sprite-map);
   @include background-size(
     image-width(sprite-path($sprite-map)) / $pixel-ratio 
     image-height(sprite-path($sprite-map)) / $pixel-ratio
@@ -91,14 +91,28 @@
 // **Usage:**
 //
 // ```scss
+// $icon-sprite: get-sprite("icon");
+//
 // .icon {
+//   display: block; // or inline-block
 //   @include sprite-base($icon-sprite, 2);
-//   
-//   &.home {
+//  
+//   &.icon-home {
 //     @include sprite-part($icon-sprite, 'home', 2);
 //   }
-//   &.my-page {
+//   &.icon-my-page {
 //     @include sprite-part($icon-sprite, 'my-page', 2);
+//   }
+// }
+//
+// .icon {
+//   display: block; // or inline-block
+//   @include sprite-base($icon-sprite, 2);
+//   
+//   @each $i in sprite-names($icon-sprite){
+//     &.icon-#{$i}{
+//       @include sprite-part($icon-sprite, #{$i}, 2);
+//     }
 //   }
 // }
 // ```
@@ -112,7 +126,7 @@
 //
 // Styleguide 9.1.3.
 @mixin sprite-base($sprite-map, $pixel-ratio: 1) {
-  background: sprite-url($sprite-map);
+  background-image: sprite-url($sprite-map);
   @include background-size(
     image-width(sprite-path($sprite-map)) / $pixel-ratio 
     image-height(sprite-path($sprite-map)) / $pixel-ratio
@@ -131,14 +145,28 @@
 // **Usage:**
 //
 // ```scss
+// $icon-sprite: get-sprite("icon");
+//
 // .icon {
+//   display: block; // or inline-block
 //   @include sprite-base($icon-sprite, 2);
-//   
-//   &.home {
+//  
+//   &.icon-home {
 //     @include sprite-part($icon-sprite, 'home', 2);
 //   }
-//   &.my-page {
+//   &.icon-my-page {
 //     @include sprite-part($icon-sprite, 'my-page', 2);
+//   }
+// }
+//
+// .icon {
+//   display: block; // or inline-block
+//   @include sprite-base($icon-sprite, 2);
+//   
+//   @each $i in sprite-names($icon-sprite){
+//     &.icon-#{$i}{
+//       @include sprite-part($icon-sprite, #{$i}, 2);
+//     }
 //   }
 // }
 // ```
