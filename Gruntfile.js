@@ -71,10 +71,10 @@ module.exports = function(grunt) {
           livereload: LIVERELOAD_PORT
         },
         files: [
-          '<%= path.appImages %>/**/*.{png,jpg,gif,svg}',
-          '<%= path.appStyles %>/**/*.css',
-          '<%= path.appScripts %>/**/*.js',
-          '<%= path.app %>/**/*.html',
+          '<%= path.appImages %>/{,*/}*.{png,jpg,gif,svg}',
+          '<%= path.appStyles %>/{,*/}*.css',
+          '<%= path.appScripts %>/{,*/}*.js',
+          '<%= path.app %>/*.html',
           '!<%= path.app %>/bower_components/**/*'
         ]
       }
